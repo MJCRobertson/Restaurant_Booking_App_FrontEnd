@@ -28,7 +28,7 @@ class BookingContainer extends Component{
   render(){
     return(
       <div>
-      <h1>Hello from the main container</h1>
+      <h1>Bugz N Shit</h1>
       <CustomersForm onSubmit={this.onSubmit}/>
       </div>
     )

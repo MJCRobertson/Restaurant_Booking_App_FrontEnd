@@ -27,6 +27,7 @@ class TableForm extends Component {
 
   render() {
     return (
+      
       <form>
         <div className="form-wrap">
           <label htmlfor="tableNumber">Table Number</label>
