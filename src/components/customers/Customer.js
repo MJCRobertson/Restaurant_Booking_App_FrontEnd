@@ -19,10 +19,19 @@ import React, { Component } from 'react';
 // }
 
 const Customer = (props) => {
+
+  if (!props.customer) {
+    return "loading..."
+  }
+
   return(
-    <div>
-    I'm a customer.
-    </div>
+    <Fragment>
+    <p>
+    {props.customer.name}
+    {props.customer.email}
+    {props.customer.numberOfVisits}
+    </p>
+    </Fragment>
   )
 }
 

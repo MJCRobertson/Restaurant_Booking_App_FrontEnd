@@ -1,5 +1,5 @@
 import React from 'react';
-import Customer from './Customers.js';
+import Customer from './Customer.js';
 
 const CustomerList = (props) => {
 
