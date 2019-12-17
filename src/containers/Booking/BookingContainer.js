@@ -7,31 +7,41 @@ class BookingContainer extends Component{
   constructor(props) {
     super(props);
     this.state= {
-      customers: [],
-      bookings: []
+      customers: []
+      // bookings: []
     }
   }
 
   componentDidMount() {
-    const request = new Request();
+     const request = new Request();
 
-      request.get('/api/bookings')
-      .then((data) => {
-        this.setState({bookings: data._embedded.bookings})
-      })
+     request.get('/api/customers')
+     .then((data) => {
+       this.setState({customers: data._embedded.customers})
+     }
+   )
   }
-
-  onSubmit(data) {
-    this.setState([...this.state.customers, data]);
-    // use the spread operator with t
-  }
+  //
+  // onSubmit(data) {
+  //   this.setState([...this.state.customers, data]);
+  //   // use the spread operator with t
+  // }
 
   render(){
     return(
-      <div>
-      <h1>Bugz N Sh*t</h1>
-      <CustomersForm onSubmit={this.onSubmit}/>
-      </div>
+      // <div>
+      // <h1>Bugz N Sh*t</h1>
+      // <CustomersForm onSubmit={this.onSubmit}/>
+      // </div>
+      <Router>
+      <Fragment>
+      <Switch>
+      <Route render={(props) => {
+        return <CustomerList customers={this.state.customers}/>
+      }}/>
+      </Switch>
+      </Fragment>
+      </Router>
     )
   }
 }
