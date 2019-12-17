@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import BookingContainer from './containers/BookingContainer.js'
+import MainContainer from './containers/MainContainer.js'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-      <BookingContainer />
+      <MainContainer />
       </div>
     );
   }
