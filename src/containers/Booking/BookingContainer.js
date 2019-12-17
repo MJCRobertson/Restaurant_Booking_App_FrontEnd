@@ -10,6 +10,7 @@ class BookingContainer extends Component{
       customers: []
       // bookings: []
     }
+    this.findCustomerById = this.findCustomerById.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +21,12 @@ class BookingContainer extends Component{
        this.setState({customers: data._embedded.customers})
      }
    )
+  }
+
+  findCustomerById(id){
+    return this.state.customers.find((customer) => {
+      return customer.id === parseInt(id);
+    });
   }
   //
   // onSubmit(data) {
@@ -36,6 +43,12 @@ class BookingContainer extends Component{
       <Router>
       <Fragment>
       <Switch>
+      <Route exact path = "/customers" render={(props) => {
+        return <CustomerList customers={this.state.customers}
+      }}/>
+      <Route exact path = "/customers/:id" render={(props) => {
+      const id = props.match.params.id;
+      const customer = this.findCustomerById(id);}} />
       <Route render={(props) => {
         return <CustomerList customers={this.state.customers}/>
       }}/>
