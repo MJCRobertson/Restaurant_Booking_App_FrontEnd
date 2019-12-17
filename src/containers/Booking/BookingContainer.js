@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import CustomersForm from '../../components/CustomersForm.js';
+import React, { Component, Fragment } from 'react';
+import CustomersForm from '../../components/customers/CustomersForm.js';
 import Request from '../../helpers/Request.js';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 class BookingContainer extends Component{
   constructor(props) {
@@ -28,7 +29,7 @@ class BookingContainer extends Component{
   render(){
     return(
       <div>
-      <h1>Bugz N Shit</h1>
+      <h1>Bugz N Sh*t</h1>
       <CustomersForm onSubmit={this.onSubmit}/>
       </div>
     )
