@@ -12,11 +12,12 @@ const CustomerDetail = (props) => {
 
    return(
      <div className = "component">
-     <Customer customer = {props.customer}/>
-     <p>Bookings:</p>
-     <ul>
-     {bookings}
-     </ul>
+      <Customer customer = {props.customer}/>
+        <p>Bookings:</p>
+          <ul>
+            {bookings}
+          </ul>
+          <button onClick={handleDelete}>Delete {props.customer.name}</button>
      </div>
    )
 }

@@ -12,6 +12,7 @@ class BookingContainer extends Component{
       // bookings: []
     }
     this.findCustomerById = this.findCustomerById.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +29,14 @@ class BookingContainer extends Component{
     return this.state.customers.find((customer) => {
       return customer.id === parseInt(id);
     });
+  }
+
+  handleDelete(id){
+    const request = new Request();
+    const url = '/api/customers/' + id;
+    request.delete(url).then(() => {
+      window.location = '/customers';
+    })
   }
   //
   // onSubmit(data) {
@@ -48,8 +57,8 @@ class BookingContainer extends Component{
         return <CustomerList customers={this.state.customers}
       }}/>
       <Route exact path = "/customers/:id" render={(props) => {
-      const id = props.match.params.id;
-      const customer = this.findCustomerById(id);}} />
+       const customer = this.findCustomerById(props.match.params.id)
+       return <CustomerDetail customer={customer} onDelete={this.handleDelete}/>
       <Route render={(props) => {
         return <CustomerList customers={this.state.customers}/>
       }}/>
@@ -59,5 +68,4 @@ class BookingContainer extends Component{
     )
   }
 }
-
 export default BookingContainer;

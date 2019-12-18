@@ -12,7 +12,7 @@ const MainContainer = () => {
       </Switch>
       </Fragment>
       </Router>
-      <BookingContainer/>
+      // <BookingContainer/>
     )
 }
 
