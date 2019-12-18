@@ -9,6 +9,7 @@ class CustomerEditForm extends Component {
       bookings: []
     }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.findTableLink = this.findTableLink.bind(this);
   }
 
   componentDidMount() {

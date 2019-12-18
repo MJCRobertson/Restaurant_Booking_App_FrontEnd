@@ -55,7 +55,7 @@ render(){
   }
 
   const tableOptions = this.state.tables.map((table, index) => {
-    return <option key={index} value={table._links.self.href}>{table.name}</option>
+    return <option key={index} value={table._links.self.href}>{table.number}</option>
   })
 
   return(
