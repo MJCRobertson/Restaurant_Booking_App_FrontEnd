@@ -1,5 +1,5 @@
-import React {Component} from 'react';
-import Customer from './customer.js';
+import React, {Component} from 'react';
+import Customer from './Customer.js';
 import {Link} from 'react-router-dom';
 
 const CustomerDetail = (props) => {
@@ -20,7 +20,7 @@ const CustomerDetail = (props) => {
           <ul>
             {bookings}
           </ul>
-          <button onClick={handleDelete}>Delete {props.customer.name}</button>
+          <button onClick={props.handleDelete}>Delete {props.customer.name}</button>
           <Link to={editUrl}><button type="button">Edit Customer {props.customer.name}</button></Link>
      </div>
    )

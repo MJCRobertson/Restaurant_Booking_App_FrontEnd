@@ -3,7 +3,6 @@ import React from 'react';
 const NavBar = (props) => {
   return (
     <header>
-      // <img src=""  /> can add image here
 
       <ul>
         <li className="navLink">

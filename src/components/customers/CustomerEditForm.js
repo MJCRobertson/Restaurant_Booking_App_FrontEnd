@@ -51,7 +51,7 @@ class CustomerEditForm extends Component {
   }
 
   customerHasBooking(booking){
-    return this.props.customer.bookings.some((booking) => {
+    return this.props.customer.bookings.some((customerBooking) => {
       return customerBooking.date === booking.date;
     })
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CustomerFormStyle.css'
 import Request from '../../helpers/Request.js'
 
-class CustomerForm extends Component {
+class CustomerCreateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,13 +11,12 @@ class CustomerForm extends Component {
       email: "",
       numberOfVisits: 0
     }
-  }
+  this.handleName = this.handleName.bind(this);
+  this.handleEmail = this.handleEmail.bind(this);
+  this.handleNumberOfVisits = this.handleNumberOfVisits.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
 }
-//test entry
-this.handleName = this.handleName.bind(this);
-this.handleEmail = this.handleEmail.bind(this);
-this.handleNumberOfVisits = this.handleNumberOfVisits.bind(this);
-this.handleSubmit = this.handleSubmit.bind(this);
+
 
 componentDidMount(){
   const request = new Request();
@@ -39,7 +38,7 @@ handleNumberOfVisits(event){
 }
 
 handleSubmit(event) {
-  even.preventDefault();
+  event.preventDefault();
   const newCustomer = {
     name: this.state.name,
     email: this.state.email,
@@ -77,7 +76,7 @@ render(){
     </div>
   )
 }
-
+}
 
 //     this.state = {
 //       customerName: "",

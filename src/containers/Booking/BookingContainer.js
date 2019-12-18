@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import CustomersForm from '../../components/customers/CustomersForm.js';
 import Request from '../../helpers/Request.js';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import CustomerDetail from '../../components/customers/CustomerDetail.js';
 import CustomerCreateForm from '../../components/customers/CustomerCreateForm.js';
 import CustomerEditForm from '../../components/customers/CustomerEditForm.js';
+import CustomerList from '../../components/customers/CustomerList.js'
 
 class BookingContainer extends Component{
   constructor(props) {
@@ -50,7 +50,7 @@ class BookingContainer extends Component{
     })
   }
 
-  handleUpdate(pirate, id){
+  handleUpdate(customer, id){
     const request = new Request();
     request.patch('/api/customers/', customer).then(() => {
       window.location = '/customers'
@@ -75,11 +75,15 @@ class BookingContainer extends Component{
         return <CustomerCreateForm onFormSubmit={this.handlePost}/>
       }}/>
       <Route exact path = "/customers" render={(props) => {
-        return <CustomerList customers={this.state.customers}
+        return <CustomerList customers={this.state.customers}/>
       }}/>
+
       <Route exact path = "/customers/:id" render={(props) => {
        const customer = this.findCustomerById(props.match.params.id)
        return <CustomerDetail customer={customer} onDelete={this.handleDelete}/>
+     }}
+      />
+
       <Route render={(props) => {
         return <CustomerList customers={this.state.customers}/>
       }}/>
