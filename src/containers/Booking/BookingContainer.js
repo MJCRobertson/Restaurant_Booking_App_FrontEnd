@@ -86,7 +86,7 @@ class BookingContainer extends Component{
       <Route exact path = "/customers/:id/edit" render = {(props) => {
         const id = props.match.params.id;
         const customer = this.findCustomerById(id);
-        return <CustomerEditForm customer={customer}/>
+        return <CustomerEditForm customer={customer} handleCustomerUpdate={this.handleUpdate}/>
       }}/>
       </Switch>
       </Fragment>

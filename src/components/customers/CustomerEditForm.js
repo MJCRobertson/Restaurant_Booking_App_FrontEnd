@@ -8,6 +8,7 @@ class CustomerEditForm extends Component {
       tables: [],
       bookings: []
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -18,6 +19,24 @@ class CustomerEditForm extends Component {
     .then((data) => {
       this.setState({tables: data[0]._embedded.tables, bookings: data[1]._embedded.bookings})
     })
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+    const bookings = [...event.target.bookings.options].filter((option) => {
+      return option.selected
+    }).map((option) => {
+      return option.value
+    })
+
+    const customer = {
+      "name": this.target.name.value,
+      "email": this.target.email.value,
+      "numberOfVisits": this.target.numberOfVisits.value,
+      "table": event.target.table.value,
+      "bookings": bookings
+    }
+    this.props.onUpdate(customer, this.props.customer.id)
   }
 
   render() {
@@ -35,7 +54,7 @@ class CustomerEditForm extends Component {
 
     return (
       <div>
-      <form>
+      <form onSubmit={this.handleSubmit}>
       <input type="text" name="name" defaultValue={this.props.customer.name}/>
       <input type="text" name="email" defaultValue={this.props.customer.email}/>
       <input type="text" name="numberOfVisits" defaultValue={this.props.customer.numberOfVisits}/>
