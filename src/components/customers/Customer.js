@@ -5,7 +5,7 @@ const Customer = (props) => {
   if (!props.customer) {
     return "loading..."
   }
-  // console.log(props.customer._links.bookings);
+  console.log(props.customer._links.bookings);
 
   const url = "/customers/" + props.customer.id;
 
@@ -14,7 +14,6 @@ const Customer = (props) => {
     <Link to = {url} className="name">
     {props.customer.name}
     </Link>
-    <p>{props.customer.booking.date}</p>
     <p>{props.customer.email}</p>
     <p>{props.customer.numberOfVisits}</p>
     </Fragment>

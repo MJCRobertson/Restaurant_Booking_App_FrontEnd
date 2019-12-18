@@ -56,12 +56,7 @@ class BookingContainer extends Component{
       window.location = '/customers'
     })
   }
-  //
-  // onSubmit(data) {
-  //   this.setState([...this.state.customers, data]);
-  //   // use the spread operator with t
-  // }
-
+  
   render(){
     return(
       // <div>

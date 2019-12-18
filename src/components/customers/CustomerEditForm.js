@@ -91,7 +91,7 @@ class CustomerEditForm extends Component {
       {tableOptions}
       </select>
 
-      <select multiple={true} name="bookings" defaultValue = {this.findBookingLinks}>
+      <select multiple={true} name="bookings" defaultValue = {this.findBookingLinks()}>
       {bookingOptions}
       </select>
 

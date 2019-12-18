@@ -9,19 +9,21 @@ class CustomerCreateForm extends Component {
       tables: [],
       name: "",
       email: "",
-      numberOfVisits: 0
+      numberOfVisits: 0,
+      selectedTableNo: ""
     }
   this.handleName = this.handleName.bind(this);
   this.handleEmail = this.handleEmail.bind(this);
   this.handleNumberOfVisits = this.handleNumberOfVisits.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
+  this.handleSelectedTable = this.handleSelectedTable.bind(this);
 }
 
 
 componentDidMount(){
   const request = new Request();
-  request.get('/api/tables').then((data) => {
-    this.setState({tables: data._embedded.tables})
+  request.get('/api/restaurantTables').then((data) => {
+    this.setState({tables: data._embedded.restaurantTables})
   })
 }
 
@@ -37,6 +39,10 @@ handleNumberOfVisits(event){
   this.setState({numberOfVisits: event.target.value})
 }
 
+handleSelectedTable(event){
+  this.setState({selectedTableNo: event.target.value})
+}
+
 handleSubmit(event) {
   event.preventDefault();
   const newCustomer = {
@@ -49,6 +55,7 @@ handleSubmit(event) {
 }
 
 render(){
+  console.log(this.state);
   if(!this.state.tables.length === 0){
     return <p>Loading...</p>
   }
@@ -66,7 +73,7 @@ render(){
     <input type="text" placeholder="Email" onChange={this.handleEmail} value={this.state.email}/>
     <input type="number" placeholder="Number Of Visits" onChange={this.handleNumberOfVisits} value={this.state.numberOfVisits}/>
 
-    <select name="table">
+    <select name="table" onChange={this.handleSelectedTable}>
     {tableOptions}
     </select>
 
