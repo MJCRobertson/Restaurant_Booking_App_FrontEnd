@@ -11,6 +11,7 @@ class CustomerEditForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.findTableLink = this.findTableLink.bind(this);
     this.customerHasBooking = this.customerHasBooking.bind(this);
+    this.findBookingLinks = this.findBookingLinks.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +50,23 @@ class CustomerEditForm extends Component {
     return foundTable._links.self.href;
   }
 
+  customerHasBooking(booking){
+    return this.props.customer.bookings.some((booking) => {
+      return customerBooking.date === booking.date;
+    })
+  }
+
+  findBookingLinks(){
+    const customerBookings = this.state.bookings.filter((booking) => {
+      return this.customerHasBooking(booking)
+    })
+
+    return customerBookings.map((booking) => {
+      return booking._links.self.href;
+    })
+  }
+
+
   render() {
     if(this.state.tables.length === 0 || this.state.bookings.length === 0 || !this.props.customer){
       return null
@@ -73,7 +91,7 @@ class CustomerEditForm extends Component {
       {tableOptions}
       </select>
 
-      <select multiple={true} name="bookings">
+      <select multiple={true} name="bookings" defaultValue = {this.findBookingLinks}>
       {bookingOptions}
       </select>
 
