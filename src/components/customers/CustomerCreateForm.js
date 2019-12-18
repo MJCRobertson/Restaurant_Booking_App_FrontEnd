@@ -17,6 +17,7 @@ class CustomerForm extends Component {
 this.handleName = this.handleName.bind(this);
 this.handleEmail = this.handleEmail.bind(this);
 this.handleNumberOfVisits = this.handleNumberOfVisits.bind(this);
+this.handleSubmit = this.handleSubmit.bind(this);
 
 componentDidMount(){
   const request = new Request();
@@ -37,6 +38,17 @@ handleNumberOfVisits(event){
   this.setState({numberOfVisits: event.target.value})
 }
 
+handleSubmit(event) {
+  even.preventDefault();
+  const newCustomer = {
+    name: this.state.name,
+    email: this.state.email,
+    numberOfVisits: this.state.numberOfVisits,
+    table: event.target.table.value
+  }
+  this.props.onFormSubmit(newCustomer);
+}
+
 render(){
   if(!this.state.tables.length === 0){
     return <p>Loading...</p>
@@ -48,14 +60,19 @@ render(){
 
   return(
     <div>
-    <form>
+
+    <form onSubmit={this.handleSubmit}>
+
     <input type="text" placeholder="Name" onChange={this.handleName} value={this.state.name}/>
     <input type="text" placeholder="Email" onChange={this.handleEmail} value={this.state.email}/>
     <input type="number" placeholder="Number Of Visits" onChange={this.handleNumberOfVisits} value={this.state.numberOfVisits}/>
+
     <select name="table">
     {tableOptions}
     </select>
+
     <button type="submit">Submit new Customer</button>
+
     </form>
     </div>
   )

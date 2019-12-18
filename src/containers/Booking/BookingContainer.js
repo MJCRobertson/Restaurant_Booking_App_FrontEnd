@@ -14,6 +14,7 @@ class BookingContainer extends Component{
     }
     this.findCustomerById = this.findCustomerById.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handlePost = this.handlePost.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +40,13 @@ class BookingContainer extends Component{
       window.location = '/customers';
     })
   }
+
+  handlePost(customer) {
+    const request = new Request();
+    request.post('/api/customers', customer).then(() => {
+      window.location = '/customers'
+    })
+  }
   //
   // onSubmit(data) {
   //   this.setState([...this.state.customers, data]);
@@ -54,8 +62,8 @@ class BookingContainer extends Component{
       <Router>
       <Fragment>
       <Switch>
-      <Route exact path = '/customers/new' render={() => {
-        return <CustomerCreateForm/>
+      <Route exact path = '/customers/new' render={(props) => {
+        return <CustomerCreateForm onFormSubmit={this.handlePost}/>
       }}/>
       <Route exact path = "/customers" render={(props) => {
         return <CustomerList customers={this.state.customers}
