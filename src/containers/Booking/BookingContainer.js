@@ -16,6 +16,7 @@ class BookingContainer extends Component{
     this.findCustomerById = this.findCustomerById.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handlePost = this.handlePost.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,13 @@ class BookingContainer extends Component{
   handlePost(customer) {
     const request = new Request();
     request.post('/api/customers', customer).then(() => {
+      window.location = '/customers'
+    })
+  }
+
+  handleUpdate(pirate, id){
+    const request = new Request();
+    request.patch('/api/customers/', customer).then(() => {
       window.location = '/customers'
     })
   }

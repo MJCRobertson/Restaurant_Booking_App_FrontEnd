@@ -29,6 +29,10 @@ class CustomerEditForm extends Component {
       return <option key={index} value={table._links.self.href}>{table.number}</option>
     })
 
+    const bookingOptions = this.state.bookings.map((booking, index) => {
+      return <option key={index} value={booking._links.self.href}>{booking.date}</option>
+    })
+
     return (
       <div>
       <form>
@@ -38,6 +42,10 @@ class CustomerEditForm extends Component {
 
       <select name="table">
       {tableOptions}
+      </select>
+
+      <select multiple={true} name="bookings">
+      {bookingOptions}
       </select>
 
       <button type="submit"> Save Update </button>
