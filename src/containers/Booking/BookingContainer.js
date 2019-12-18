@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import CustomersForm from '../../components/customers/CustomersForm.js';
 import Request from '../../helpers/Request.js';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import CustomerDetail from '../../components.customers/CustomerDetail.js'
+import CustomerDetail from '../../components/customers/CustomerDetail.js';
+import CustomerCreateForm from '../../components/customers/CustomerCreateForm.js';
 
 class BookingContainer extends Component{
   constructor(props) {
@@ -53,6 +54,9 @@ class BookingContainer extends Component{
       <Router>
       <Fragment>
       <Switch>
+      <Route exact path = '/customers/new' render={() => {
+        return <CustomerCreateForm/>
+      }}/>
       <Route exact path = "/customers" render={(props) => {
         return <CustomerList customers={this.state.customers}
       }}/>
