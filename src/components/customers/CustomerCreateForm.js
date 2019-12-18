@@ -6,10 +6,10 @@ class CustomerForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-       tables: [],
-       name: "",
-       email: "",
-       numberOfVisits: 0
+      tables: [],
+      name: "",
+      email: "",
+      numberOfVisits: 0
     }
   }
 }
@@ -41,7 +41,24 @@ render(){
   if(!this.state.tables.length === 0){
     return <p>Loading...</p>
   }
-  return "Imfgiousnfewiunwenf"
+
+  const tableOptions = this.state.tables.map((table, index) => {
+    return <option key={index} value={table._links.self.href}>{table.name}</option>
+  })
+
+  return(
+    <div>
+    <form>
+    <input type="text" placeholder="Name" onChange={this.handleName} value={this.state.name}/>
+    <input type="text" placeholder="Email" onChange={this.handleEmail} value={this.state.email}/>
+    <input type="number" placeholder="Number Of Visits" onChange={this.handleNumberOfVisits} value={this.state.numberOfVisits}/>
+    <select name="table">
+    {tableOptions}
+    </select>
+    <button type="submit">Submit new Customer</button>
+    </form>
+    </div>
+  )
 }
 
 
