@@ -24,12 +24,16 @@ const Customer = (props) => {
     return "loading..."
   }
 
+  const url = "/customers/" + props.customer.id;
+
   return(
     <Fragment>
-    <p>
+    <Link to = {url} className="name">
     {props.customer.name}
-    {props.customer.email}
-    {props.customer.numberOfVisits}
+    </Link>
+    <p>{props.customer.booking.date}</p>
+    <p>{props.customer.email}</p>
+    <p>{props.customer.numberOfVisits}</p>
     </p>
     </Fragment>
   )
