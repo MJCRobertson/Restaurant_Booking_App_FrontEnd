@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import CustomersForm from '../../components/customers/CustomersForm.js';
 import Request from '../../helpers/Request.js';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import CustomerDetail from '../../components.customers/CustomerDetail.js'
 
 class BookingContainer extends Component{
   constructor(props) {
