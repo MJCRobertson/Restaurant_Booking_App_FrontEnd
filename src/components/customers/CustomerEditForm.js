@@ -10,6 +10,7 @@ class CustomerEditForm extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.findTableLink = this.findTableLink.bind(this);
+    this.customerHasBooking = this.customerHasBooking.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +41,14 @@ class CustomerEditForm extends Component {
     this.props.onUpdate(customer, this.props.customer.id)
   }
 
+  findTableLink(){
+    const foundTable = this.state.tables.find((table) => {
+      return table.number === this.props.customer.table.number;
+    })
+
+    return foundTable._links.self.href;
+  }
+
   render() {
     if(this.state.tables.length === 0 || this.state.bookings.length === 0 || !this.props.customer){
       return null
@@ -60,7 +69,7 @@ class CustomerEditForm extends Component {
       <input type="text" name="email" defaultValue={this.props.customer.email}/>
       <input type="text" name="numberOfVisits" defaultValue={this.props.customer.numberOfVisits}/>
 
-      <select name="table">
+      <select name="table" defaultValue={this.findTableLink()}>
       {tableOptions}
       </select>
 
