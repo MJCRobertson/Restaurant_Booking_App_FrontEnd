@@ -4,6 +4,7 @@ import Request from '../../helpers/Request.js';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import CustomerDetail from '../../components/customers/CustomerDetail.js';
 import CustomerCreateForm from '../../components/customers/CustomerCreateForm.js';
+import CustomerEditForm from '../../components/customers/CustomerEditForm.js';
 
 class BookingContainer extends Component{
   constructor(props) {
@@ -73,6 +74,11 @@ class BookingContainer extends Component{
        return <CustomerDetail customer={customer} onDelete={this.handleDelete}/>
       <Route render={(props) => {
         return <CustomerList customers={this.state.customers}/>
+      }}/>
+      <Route exact path = "/customers/:id/edit" render = {(props) => {
+        const id = props.match.params.id;
+        const customer = this.findCustomerById(id);
+        return <CustomerEditForm customer={customer}/>
       }}/>
       </Switch>
       </Fragment>
